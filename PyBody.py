@@ -6,6 +6,7 @@ import random
 import timeit
 import pygame
 import Universe
+import IntegrationMethod
 
 #Setting up pygame
 
@@ -57,8 +58,9 @@ while not simulationExit:
 
     for particle in Universe.particlelist:
         for other in filter(lambda p: p != particle, Universe.particlelist):
-            Universe.integrator(particle,other)
-            Universe.drag(particle)
+            IntegrationMethod.euler(particle,other)
+            #Universe.integrator(particle,other)
+            #Universe.drag(particle)
 
         #x = int(displayWidth/2 + particle.px/Universe.AU*500)
         #y = int(displayHeight/2 + particle.py/Universe.AU*500)
