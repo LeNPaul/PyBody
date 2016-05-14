@@ -34,38 +34,6 @@ class Particle(object):
         self.vx = vx
         self.vy = vy
 
-def integrator(self,other):
-
-    #Returns the position and velocity of self object
-    #Uses Euler numerical integration
-
-    sx = self.px
-    sy = self.py
-    ox = other.px
-    oy = other.py
-
-    dx = (ox - sx)
-    dy = (oy - sy)
-    d = math.sqrt(dx**2 + dy**2)
-
-    f = G*self.mass*other.mass / (d**2)
-
-    theta = math.atan2(dy,dx)
-    fx = math.cos(theta) * f
-    fy = math.sin(theta) * f
-
-    #Output
-    self.vx += fx/self.mass * dt
-    self.vy += fy/self.mass * dt
-
-    self.px += self.vx * dt
-    self.py += self.vy * dt
-
-def drag(self):
-
-        self.vx = self.vx*0.9
-        self.vy = self.vy*0.9
-
 #Initial massive objects
 sun = Particle(msun,0,0,0,0)
 earth = Particle(mearth,-dearth,0,0,29.783 * 1000)
