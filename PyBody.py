@@ -4,6 +4,7 @@ import timeit
 import pygame
 import Universe
 import Physics
+import IntegrationMethod
 
 #Setting up pygame
 
@@ -55,7 +56,7 @@ while not simulationExit:
 
     for particle in Universe.particlelist:
         for other in filter(lambda p: p != particle, Universe.particlelist):
-            Physics.integrator(particle,other)
+            Physics.gravity(particle,other)
             Physics.drag(particle)
 
         #x = int(displayWidth/2 + particle.px/Universe.AU*500)
@@ -65,7 +66,6 @@ while not simulationExit:
         
         pygame.draw.circle(simulationDisplay,Universe.white,(x,y),1,1)
 
-    print len(Universe.particlelist)
     pygame.display.update()
 
     totaltime += 1

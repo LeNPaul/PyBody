@@ -1,7 +1,7 @@
 import math
-import Universe
+import Physics
 
-def gravity(self,other):
+def euler(self,other):
 
     #Returns the position and velocity of self object
     #Uses Euler numerical integration
@@ -27,9 +27,3 @@ def gravity(self,other):
 
     self.px += self.vx * Universe.dt
     self.py += self.vy * Universe.dt
-    
-
-def drag(self):
-
-        self.vx = self.vx*0.9
-        self.vy = self.vy*0.9
