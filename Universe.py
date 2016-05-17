@@ -1,5 +1,6 @@
 import math
 import random
+import PyBody
 
 #Colours
 
@@ -47,8 +48,8 @@ def generateparticles(particlenumber):
         #theta = random.uniform(0,6.3)
         #px = int(r*math.sin(theta))
         #py = int(r*math.cos(theta))
-        px = random.randint(0,1200)
-        py = random.randint(0,700)
+        px = random.randint(0,PyBody.displayWidth)
+        py = random.randint(0,PyBody.displayHeight)
         vx = 0#random.randint(0,100)*random.randint(-1,1)
         vy = 0#random.randint(0,100)*random.randint(-1,1)
         mass = random.randint(100,1000)
