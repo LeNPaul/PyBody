@@ -12,8 +12,8 @@ start = timeit.default_timer()
 
 totaltime = 0
 
-displayWidth = 700
-displayHeight = 400
+displayWidth = 1200
+displayHeight = 700
 
 particlenumber = 100
 centralmass = Universe.sun
@@ -21,7 +21,7 @@ centralmass = Universe.sun
 clock = pygame.time.Clock()
 
 simulationDisplay = pygame.display.set_mode((displayWidth, displayHeight))
-pygame.display.set_caption("Galaxy Simulation")
+pygame.display.set_caption("PyBody Simulations")
 pygame.display.update()
 
 simulationExit = False
