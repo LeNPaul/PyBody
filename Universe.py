@@ -12,8 +12,7 @@ particlelist = []
 
 #Constants
 
-#G = 6.67428e-11
-G = 0.2
+G = 6.67428e-11
 AU = (149.6e6 * 1000)
 dt = 24*3600
 

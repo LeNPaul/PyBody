@@ -1,10 +1,10 @@
 import pygame
-import Universe
+import universe
 
 #Setting up pygame
 
-displayWidth = 700
-displayHeight = 400
+displayWidth = 1200
+displayHeight = 700
 
 particlenumber = 100
 
@@ -18,7 +18,7 @@ simulationExit = False
 
 #Simulation loop
 
-Universe.generateparticles(particlenumber)
+universe.generateparticles(particlenumber)
 
 while not simulationExit:
     for event in pygame.event.get():
@@ -29,18 +29,16 @@ while not simulationExit:
 
             simulationExit = True
 
-    simulationDisplay.fill(Universe.black)
+    simulationDisplay.fill(universe.black)
 
-    #Universe.particlelist.append(Universe.sun)
-
-    for particle in Universe.particlelist:
-        for other in filter(lambda p: p != particle, Universe.particlelist):
-            Universe.integrator(particle,other)
-            Universe.drag(particle)
+    for particle in universe.particlelist:
+        for other in filter(lambda p: p != particle, universe.particlelist):
+            universe.integrator(particle,other)
+            universe.drag(particle)
         x = int(particle.px)
         y = int(particle.py)
         
-        pygame.draw.circle(simulationDisplay,Universe.white,(x,y),1,1)
+        pygame.draw.circle(simulationDisplay,universe.white,(x,y),1,1)
 
     pygame.display.update()
 
