@@ -13,7 +13,6 @@ particlelist = []
 #Constants
 
 G = 6.67428e-11
-AU = (149.6e6 * 1000)
 dt = 24*3600
 
 #Parameters
@@ -54,22 +53,17 @@ def integrator(self,other):
 
     self.px += self.vx * dt
     self.py += self.vy * dt
-
-def drag(self):
-
-        self.vx = self.vx*0.9
-        self.vy = self.vy*0.9
-
+    
 #Generating particles
 
 def generateparticles(particlenumber):
 
     for n in range(particlenumber):
-        px = random.randint(0,700)
-        py = random.randint(0,400)
+        px = random.randint(0,1200)
+        py = random.randint(0,700)
         vx = 0
         vy = 0
-        mass = random.randint(100,10000)
+        mass = random.randint(10,50)
 
         particle = Particle(mass, px, py, vx, vy)
 

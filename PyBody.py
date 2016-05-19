@@ -27,6 +27,7 @@ while not simulationExit:
 
         if event.type == pygame.QUIT:
 
+
             simulationExit = True
 
     simulationDisplay.fill(universe.black)
@@ -34,7 +35,6 @@ while not simulationExit:
     for particle in universe.particlelist:
         for other in filter(lambda p: p != particle, universe.particlelist):
             universe.integrator(particle,other)
-            universe.drag(particle)
         x = int(particle.px)
         y = int(particle.py)
         
