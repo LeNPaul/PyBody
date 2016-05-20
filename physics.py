@@ -28,3 +28,9 @@ def eulerIntegrator(self,other):
 
     self.px += self.vx * parameter.dt
     self.py += self.vy * parameter.dt
+
+def leapFrogIntegrator(self,other):
+
+    #Returns the position and velocity of self object
+    #Uses Leap Frog numerical integration
+    return
