@@ -20,7 +20,7 @@ simulationExit = False
 
 #Initial conditions
 
-universe.generateParticles(particleNumber,"moon")
+universe.generateParticles(particleNumber,"")
 
 while not simulationExit:
     for event in pygame.event.get():
