@@ -18,6 +18,8 @@ simulationExit = False
 
 #Simulation loop
 
+#Initial conditions
+
 universe.generateCloudParticles(particleNumber)
 
 while not simulationExit:
