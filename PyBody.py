@@ -1,5 +1,5 @@
 import pygame
-import universe
+import simulator
 
 #Setting up pygame
 
@@ -20,7 +20,7 @@ simulationExit = False
 
 #Initial conditions
 
-universe.generateParticles(particleNumber,"")
+simulator.generateParticles(particleNumber,"")
 
 while not simulationExit:
     for event in pygame.event.get():
@@ -31,17 +31,17 @@ while not simulationExit:
 
             simulationExit = True
 
-    simulationDisplay.fill(universe.black)
+    simulationDisplay.fill(simulator.black)
 
     #Update particle positions
-    universe.updatePositions(universe.particleList,"")
+    simulator.updatePositions(simulator.particleList,"")
 
     #Draw particles
-    for particle in universe.particleList:
+    for particle in simulator.particleList:
         x = int(particle.px)
         y = int(particle.py)
 
-        pygame.draw.circle(simulationDisplay,universe.white,(x,y),1,1)
+        pygame.draw.circle(simulationDisplay,simulator.white,(x,y),1,1)
 
     pygame.display.update()
 

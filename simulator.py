@@ -16,8 +16,6 @@ particleList = []
 G = 6.67428e-11
 dt = 24*3600
 
-#Parameters
-
 class Particle(object):
     def __init__(self, mass, px, py, vx, vy):
 
@@ -27,8 +25,6 @@ class Particle(object):
         self.py = py
         self.vx = vx
         self.vy = vy
-    
-#Generating particles
 
 def generateParticles(particleNumber,case):
 
