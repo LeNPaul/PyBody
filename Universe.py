@@ -27,6 +27,10 @@ class Particle(object):
         self.vx = vx
         self.vy = vy
 
+def force(selfMass,otherMass,distance):
+
+    return G*selfMass*otherMass / (distance**2)
+
 def integrator(self,other):
 
     #Returns the position and velocity of self object
@@ -39,9 +43,9 @@ def integrator(self,other):
 
     dx = (ox - sx)
     dy = (oy - sy)
-    d = math.sqrt(dx**2 + dy**2)
+    distance = math.sqrt(dx**2 + dy**2)
 
-    f = G*self.mass*other.mass / (d**2)
+    f = force(self.mass,other.mass,distance)
 
     theta = math.atan2(dy,dx)
     fx = math.cos(theta) * f

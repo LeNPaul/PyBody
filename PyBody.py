@@ -27,7 +27,6 @@ while not simulationExit:
 
         if event.type == pygame.QUIT:
 
-
             simulationExit = True
 
     simulationDisplay.fill(universe.black)
