@@ -11,6 +11,28 @@ simulationDisplay = pygame.display.set_mode((parameter.displayWidth, parameter.d
 pygame.display.set_caption("PyBody Simulation")
 pygame.display.update()
 
+#Pause function
+
+def pause():
+    paused = True
+
+    pygame.display.update()    
+
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    paused = False
+                elif event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+
+        clock.tick(5)
+
 #Simulation start screen
 
 def simulationIntro():
