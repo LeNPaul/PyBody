@@ -6,7 +6,7 @@ import universe
 displayWidth = 1200
 displayHeight = 700
 
-particleNumber = 25
+particleNumber = 50
 
 clock = pygame.time.Clock()
 
