@@ -20,7 +20,7 @@ simulationExit = False
 
 #Initial conditions
 
-universe.generateCloudParticles(particleNumber)
+universe.generateParticles(particleNumber,"moon")
 
 while not simulationExit:
     for event in pygame.event.get():
@@ -34,7 +34,7 @@ while not simulationExit:
     simulationDisplay.fill(universe.black)
 
     #Update particle positions
-    universe.updatePositions(universe.particleList,"nBodyasdf")
+    universe.updatePositions(universe.particleList,"")
 
     #Draw particles
     for particle in universe.particleList:

@@ -53,14 +53,24 @@ def eulerIntegrator(self,other):
     
 #Generating particles
 
-def generateCloudParticles(particleNumber):
+def generateParticles(particleNumber,case):
 
     for n in range(particleNumber):
-        px = random.randint(0,1200)
-        py = random.randint(0,700)
-        vx = 0
-        vy = 0
-        mass = random.randint(10,50)
+        if case == "moon":
+            r = random.randrange(0,4000000)
+            #r = random.randint(0,10**10)
+            theta = random.uniform(0,6.3)
+            px = 0.3*dearth + int(r*math.sin(theta))
+            py = 0 + int(r*math.cos(theta))
+            vx = 0 + random.randint(0,10000)*random.randint(-1,1)
+            vy = 29.783*1000 + random.randint(0,10000)*random.randint(-1,1)
+            mass = mearth
+        else:
+            px = random.randint(0,1200)
+            py = random.randint(0,700)
+            vx = 0
+            vy = 0
+            mass = random.randint(10,50)
 
         particle = Particle(mass, px, py, vx, vy)
         particleList.append(particle)
