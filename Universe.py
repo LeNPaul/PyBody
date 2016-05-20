@@ -65,11 +65,10 @@ def generateCloudParticles(particleNumber):
         particle = Particle(mass, px, py, vx, vy)
         particleList.append(particle)
 
-def nBody(particleList):
+def updatePositions(particleList,case):
     for particle in particleList:
-        for other in filter(lambda p: p != particle, particleList):
-            eulerIntegrator(particle,other)
-
-def largeBody(particleList,centralMass):
-    for particle in particleList:
-        eulerIntegrator(centralMass,particle)
+        if case == "largeBody":
+            eulerIntegrator(centralMass,particle)
+        else:
+            for other in filter(lambda p: p != particle, particleList):
+                eulerIntegrator(particle,other)

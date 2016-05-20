@@ -34,7 +34,7 @@ while not simulationExit:
     simulationDisplay.fill(universe.black)
 
     #Update particle positions
-    universe.nBody(universe.particleList)
+    universe.updatePositions(universe.particleList,"nBodyasdf")
 
     #Draw particles
     for particle in universe.particleList:
