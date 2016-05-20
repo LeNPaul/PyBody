@@ -11,37 +11,43 @@ simulationDisplay = pygame.display.set_mode((parameter.displayWidth, parameter.d
 pygame.display.set_caption("PyBody Simulation")
 pygame.display.update()
 
-simulationExit = False
-
 #Simulation loop
 
 #Initial conditions
 simulator.generateParticles(parameter.particleNumber,"")
 
-while not simulationExit:
-    for event in pygame.event.get():
+def simulationLoop():
 
-        #Handling quit events
+    simulationExit = False
 
-        if event.type == pygame.QUIT:
+    while not simulationExit:
+        for event in pygame.event.get():
 
-            simulationExit = True
+            #Handling quit events
 
-    simulationDisplay.fill(constant.black)
+            if event.type == pygame.QUIT:
 
-    #Update particle positions
-    simulator.updatePositions(simulator.particleList,"")
+                simulationExit = True
 
-    #Draw particles
-    for particle in simulator.particleList:
-        x = int(particle.px)
-        y = int(particle.py)
+        simulationDisplay.fill(constant.black)
 
-        pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+        #Update particle positions
+        simulator.updatePositions(simulator.particleList,"")
 
-    pygame.display.update()
+        #Draw particles
+        for particle in simulator.particleList:
+            x = int(particle.px)
+            y = int(particle.py)
 
-    clock.tick(30)
+            pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
 
-pygame.quit()
-quit()
+        pygame.display.update()
+
+        clock.tick(30)
+
+    pygame.quit()
+    quit()
+
+#Calling simulation program functions
+
+simulationLoop()
