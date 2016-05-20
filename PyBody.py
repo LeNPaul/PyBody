@@ -16,7 +16,6 @@ simulationExit = False
 #Simulation loop
 
 #Initial conditions
-
 simulator.generateParticles(parameter.particleNumber,"")
 
 while not simulationExit:
