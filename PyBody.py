@@ -1,17 +1,13 @@
 import pygame
 import simulator
-import constants
+import constant
+import parameter
 
 #Setting up pygame
 
-displayWidth = 1200
-displayHeight = 700
-
-particleNumber = 50
-
 clock = pygame.time.Clock()
 
-simulationDisplay = pygame.display.set_mode((displayWidth, displayHeight))
+simulationDisplay = pygame.display.set_mode((parameter.displayWidth, parameter.displayHeight))
 pygame.display.set_caption("PyBody Simulation")
 pygame.display.update()
 
@@ -21,7 +17,7 @@ simulationExit = False
 
 #Initial conditions
 
-simulator.generateParticles(particleNumber,"")
+simulator.generateParticles(parameter.particleNumber,"")
 
 while not simulationExit:
     for event in pygame.event.get():
@@ -32,7 +28,7 @@ while not simulationExit:
 
             simulationExit = True
 
-    simulationDisplay.fill(constants.black)
+    simulationDisplay.fill(constant.black)
 
     #Update particle positions
     simulator.updatePositions(simulator.particleList,"")
@@ -42,7 +38,7 @@ while not simulationExit:
         x = int(particle.px)
         y = int(particle.py)
 
-        pygame.draw.circle(simulationDisplay,constants.white,(x,y),1,1)
+        pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
 
     pygame.display.update()
 

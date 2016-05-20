@@ -2,19 +2,7 @@ import math
 import random
 import physics
 
-#Colours
-
-black = (0,0,0)
-white = (255,255,255)
-
-#Universal constants
-
 particleList = []
-
-#Constants
-
-G = 6.67428e-11
-dt = 24*3600
 
 class Particle(object):
     def __init__(self, mass, px, py, vx, vy):
