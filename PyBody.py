@@ -1,5 +1,6 @@
 import pygame
 import simulator
+import constants
 
 #Setting up pygame
 
@@ -31,7 +32,7 @@ while not simulationExit:
 
             simulationExit = True
 
-    simulationDisplay.fill(simulator.black)
+    simulationDisplay.fill(constants.black)
 
     #Update particle positions
     simulator.updatePositions(simulator.particleList,"")
@@ -41,7 +42,7 @@ while not simulationExit:
         x = int(particle.px)
         y = int(particle.py)
 
-        pygame.draw.circle(simulationDisplay,simulator.white,(x,y),1,1)
+        pygame.draw.circle(simulationDisplay,constants.white,(x,y),1,1)
 
     pygame.display.update()
 

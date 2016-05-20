@@ -1,9 +1,10 @@
 import math
 import simulator
+import constants
 
 def gravity(selfMass,otherMass,distance):
 
-    return simulator.G*selfMass*otherMass / (distance**2)
+    return constants.G*selfMass*otherMass / (distance**2)
 
 def eulerIntegrator(self,other):
 
@@ -22,8 +23,8 @@ def eulerIntegrator(self,other):
     fy = math.sin(theta) * f
 
     #Output
-    self.vx += fx/self.mass * simulator.dt
-    self.vy += fy/self.mass * simulator.dt
+    self.vx += fx/self.mass * constants.dt
+    self.vy += fy/self.mass * constants.dt
 
-    self.px += self.vx * simulator.dt
-    self.py += self.vy * simulator.dt
+    self.px += self.vx * constants.dt
+    self.py += self.vy * constants.dt
