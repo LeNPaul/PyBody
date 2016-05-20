@@ -31,12 +31,14 @@ while not simulationExit:
 
     simulationDisplay.fill(universe.black)
 
+    #Update particle positions
+    universe.nBody(universe.particleList)
+
+    #Draw particles
     for particle in universe.particleList:
-        for other in filter(lambda p: p != particle, universe.particleList):
-            universe.eulerIntegrator(particle,other)
         x = int(particle.px)
         y = int(particle.py)
-        
+
         pygame.draw.circle(simulationDisplay,universe.white,(x,y),1,1)
 
     pygame.display.update()

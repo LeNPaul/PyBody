@@ -71,3 +71,8 @@ def generateCloudParticles(particleNumber):
 
         particle = Particle(mass, px, py, vx, vy)
         particleList.append(particle)
+
+def nBody(particleList):
+    for particle in particleList:
+        for other in filter(lambda p: p != particle, particleList):
+            eulerIntegrator(particle,other)
