@@ -23,10 +23,12 @@ def pause():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     paused = False
+                if event.key == pygame.K_r:
+                    simulator.particleList = []
+                    simulator.generateParticles(parameter.particleNumber,"")
                 elif event.key == pygame.K_q:
                     pygame.quit()
                     quit()
@@ -52,7 +54,13 @@ def simulationIntro():
                     pygame.quit()
                     quit()
         
-        simulationDisplay.fill(constant.white)
+        simulationDisplay.fill(constant.black)
+        #Draw initial particles
+        for particle in simulator.particleList:
+            x = int(particle.px)
+            y = int(particle.py)
+
+            pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
 
         pygame.display.update()
         clock.tick(15)
@@ -72,8 +80,14 @@ def simulationLoop():
             #Handling quit events
 
             if event.type == pygame.QUIT:
-
                 simulationExit = True
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    simulator.particleList = []
+                    simulator.generateParticles(parameter.particleNumber,"")
+                if event.key == pygame.K_SPACE:
+                    pause()
 
         simulationDisplay.fill(constant.black)
 
