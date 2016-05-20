@@ -8,7 +8,7 @@ white = (255,255,255)
 
 #Universal constants
 
-particlelist = []
+particleList = []
 
 #Constants
 
@@ -27,11 +27,11 @@ class Particle(object):
         self.vx = vx
         self.vy = vy
 
-def force(selfMass,otherMass,distance):
+def gravity(selfMass,otherMass,distance):
 
     return G*selfMass*otherMass / (distance**2)
 
-def integrator(self,other):
+def eulerIntegrator(self,other):
 
     #Returns the position and velocity of self object
     #Uses Euler numerical integration
@@ -45,7 +45,7 @@ def integrator(self,other):
     dy = (oy - sy)
     distance = math.sqrt(dx**2 + dy**2)
 
-    f = force(self.mass,other.mass,distance)
+    f = gravity(self.mass,other.mass,distance)
 
     theta = math.atan2(dy,dx)
     fx = math.cos(theta) * f
@@ -60,9 +60,9 @@ def integrator(self,other):
     
 #Generating particles
 
-def generateparticles(particlenumber):
+def generateCloudParticles(particleNumber):
 
-    for n in range(particlenumber):
+    for n in range(particleNumber):
         px = random.randint(0,1200)
         py = random.randint(0,700)
         vx = 0
@@ -70,5 +70,4 @@ def generateparticles(particlenumber):
         mass = random.randint(10,50)
 
         particle = Particle(mass, px, py, vx, vy)
-
-        particlelist.append(particle)
+        particleList.append(particle)

@@ -6,7 +6,7 @@ import universe
 displayWidth = 1200
 displayHeight = 700
 
-particlenumber = 100
+particleNumber = 25
 
 clock = pygame.time.Clock()
 
@@ -18,7 +18,7 @@ simulationExit = False
 
 #Simulation loop
 
-universe.generateparticles(particlenumber)
+universe.generateCloudParticles(particleNumber)
 
 while not simulationExit:
     for event in pygame.event.get():
@@ -31,9 +31,9 @@ while not simulationExit:
 
     simulationDisplay.fill(universe.black)
 
-    for particle in universe.particlelist:
-        for other in filter(lambda p: p != particle, universe.particlelist):
-            universe.integrator(particle,other)
+    for particle in universe.particleList:
+        for other in filter(lambda p: p != particle, universe.particleList):
+            universe.eulerIntegrator(particle,other)
         x = int(particle.px)
         y = int(particle.py)
         
