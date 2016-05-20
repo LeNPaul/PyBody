@@ -11,6 +11,18 @@ simulationDisplay = pygame.display.set_mode((parameter.displayWidth, parameter.d
 pygame.display.set_caption("PyBody Simulation")
 pygame.display.update()
 
+#Reset function
+
+def resetSimulation():
+    simulationDisplay.fill(constant.black)
+    simulator.particleList = []
+    simulator.generateParticles(parameter.particleNumber,"")
+    for particle in simulator.particleList:
+        x = int(particle.px)
+        y = int(particle.py)
+        pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+        pygame.display.update()
+    
 #Pause function
 
 def pause():
@@ -27,8 +39,7 @@ def pause():
                 if event.key == pygame.K_SPACE:
                     paused = False
                 if event.key == pygame.K_r:
-                    simulator.particleList = []
-                    simulator.generateParticles(parameter.particleNumber,"")
+                    resetSimulation()
                 elif event.key == pygame.K_q:
                     pygame.quit()
                     quit()
@@ -50,6 +61,8 @@ def simulationIntro():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     intro = False
+                if event.key == pygame.K_r:
+                    resetSimulation()
                 if event.key == pygame.K_q:
                     pygame.quit()
                     quit()
@@ -84,8 +97,7 @@ def simulationLoop():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
-                    simulator.particleList = []
-                    simulator.generateParticles(parameter.particleNumber,"")
+                    resetSimulation()
                 if event.key == pygame.K_SPACE:
                     pause()
 
