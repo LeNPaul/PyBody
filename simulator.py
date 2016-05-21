@@ -18,14 +18,13 @@ def generateParticles(particleNumber,case):
 
     for n in range(particleNumber):
         if case == "moon":
-            r = random.randrange(0,4000000)
-            #r = random.randint(0,10**10)
+            r = random.randrange(0,100)
             theta = random.uniform(0,6.3)
-            px = 0.3*dearth + int(r*math.sin(theta))
-            py = 0 + int(r*math.cos(theta))
-            vx = 0 + random.randint(0,10000)*random.randint(-1,1)
-            vy = 29.783*1000 + random.randint(0,10000)*random.randint(-1,1)
-            mass = mearth
+            px = 600 + int(r*math.sin(theta))
+            py = 350 + int(r*math.cos(theta))
+            vx = 0 
+            vy = 0
+            mass = 5
         else:
             px = random.randint(0,1200)
             py = random.randint(0,700)
@@ -40,6 +39,9 @@ def updatePositions(particleList,case):
     for particle in particleList:
         if case == "largeBody":
             physics.eulerIntegrator(centralMass,particle)
+        if case == "leapFrog":
+            for other in filter(lambda p: p != particle, particleList):
+                physics.leapFrogIntegrator(particle,other)            
         else:
             for other in filter(lambda p: p != particle, particleList):
                 physics.eulerIntegrator(particle,other)

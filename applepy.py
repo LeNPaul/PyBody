@@ -152,7 +152,7 @@ def simulationIntro():
 #Simulation loop
 
 #Initial conditions
-simulator.generateParticles(parameter.particleNumber,"")
+simulator.generateParticles(parameter.particleNumber,"moon")
 
 def simulationLoop():
 
