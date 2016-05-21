@@ -35,7 +35,20 @@ class SimulationScreen:
         (self.mx, self.my) = (0, 0)
         self.magnification = 1.0
 
+#Initialize a simulation screen object
+
 simulationScreen = SimulationScreen(parameter.displayWidth,parameter.displayHeight)
+
+#Dictionary of possible input values
+
+functionKeys = {
+    pygame.K_LEFT:   (lambda x: x.scroll(dx = 1)),
+    pygame.K_RIGHT:  (lambda x: x.scroll(dx = -1)),
+    pygame.K_DOWN:   (lambda x: x.scroll(dy = -1)),
+    pygame.K_UP:     (lambda x: x.scroll(dy = 1)),
+    pygame.K_EQUALS: (lambda x: x.zoom(2)),
+    pygame.K_MINUS:  (lambda x: x.zoom(0.5)),
+    pygame.K_z:      (lambda x: x.reset())}
 
 #Reset function
 
@@ -124,22 +137,10 @@ def simulationLoop():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     resetSimulation()
-
-                elif event.key == pygame.K_LEFT:
-                    simulationScreen.scroll(dx=1)
-                elif event.key == pygame.K_RIGHT:
-                    simulationScreen.scroll(dx=-1)
-                elif event.key == pygame.K_UP:
-                    simulationScreen.scroll(dy=1)
-                elif event.key == pygame.K_DOWN:
-                    simulationScreen.scroll(dy=-1)
-                elif event.key == pygame.K_EQUALS:
-                    simulationScreen.zoom(2)
-                elif event.key == pygame.K_MINUS:
-                    simulationScreen.zoom(0.5)
-             
                 elif event.key == pygame.K_SPACE:
                     pause()
+                elif event.key in functionKeys:
+                    functionKeys[event.key](simulationScreen)
 
         simulationDisplay.fill(constant.black)
 
