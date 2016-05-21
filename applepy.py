@@ -52,11 +52,19 @@ functionKeys = {
     pygame.K_MINUS:  (lambda x: x.zoom(0.5)),
     pygame.K_z:      (lambda x: x.reset())}
 
+#Diplay number of days passed
+
+def daysPassed(count):
+    font = pygame.font.SysFont(None, 25)
+    text = font.render("Day "+str(count), True, constant.white)
+    simulationDisplay.blit(text,(0,0))
+
 #Reset simulation function
 
 def resetSimulation():
     simulationDisplay.fill(constant.black)
     simulator.particleList = []
+    count = 0
     simulator.generateParticles(parameter.particleNumber,"moon")
     for particle in simulator.particleList:
         x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
@@ -96,6 +104,8 @@ def pause():
                     functionKeys[event.key](simulationScreen)
 
         simulationDisplay.fill(constant.black)
+
+        messageFunction("Press space bar to continue simulation")
         
         for particle in simulator.particleList:
             x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
@@ -118,18 +128,11 @@ def textObjects(text, font):
     return textSurface, textSurface.get_rect()
 
 def messageFunction(text):
-    largeText = pygame.font.Font('freesansbold.ttf',115)
+    largeText = pygame.font.Font('freesansbold.ttf',30)
     textSurf, textRect = textObjects(text, largeText)
     textRect.center = ((parameter.displayWidth/2), (parameter.displayHeight/2))
     simulationDisplay.blit(textSurf, textRect)
     pygame.display.update()
-
-#Diplay number of days passed
-
-def daysPassed(count):
-    font = pygame.font.SysFont(None, 25)
-    text = font.render("Day "+str(count), True, constant.white)
-    simulationDisplay.blit(text,(0,0))
 
 #Simulation start screen
 
@@ -169,7 +172,11 @@ def simulationIntro():
             else:
                 pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
 
-        messageFunction("THIS WORKS")
+        #Menu
+
+        pygame.draw.rect(simulationDisplay, constant.white, (parameter.displayWidth/2-50,450,100,50))
+
+        messageFunction("Press space bar to start simulation")
 
         pygame.display.update()
         clock.tick(15)
