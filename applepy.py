@@ -124,6 +124,13 @@ def messageFunction(text):
     simulationDisplay.blit(textSurf, textRect)
     pygame.display.update()
 
+#Diplay number of days passed
+
+def daysPassed(count):
+    font = pygame.font.SysFont(None, 25)
+    text = font.render("Day "+str(count), True, constant.white)
+    simulationDisplay.blit(text,(0,0))
+
 #Simulation start screen
 
 def simulationIntro():
@@ -148,8 +155,6 @@ def simulationIntro():
                     functionKeys[event.key](simulationScreen)
         
         simulationDisplay.fill(constant.black)
-
-        messageFunction("THIS WORKS")
         
         #Draw initial particles
         for particle in simulator.particleList:
@@ -164,6 +169,8 @@ def simulationIntro():
             else:
                 pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
 
+        messageFunction("THIS WORKS")
+
         pygame.display.update()
         clock.tick(15)
 
@@ -173,6 +180,8 @@ def simulationIntro():
 simulator.generateParticles(parameter.particleNumber,"moon")
 
 def simulationLoop():
+
+    count = 0
 
     simulationExit = False
 
@@ -209,6 +218,9 @@ def simulationLoop():
                 pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
             else:
                 pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
+
+        count += 1
+        daysPassed(count)
 
         pygame.display.update()
 
