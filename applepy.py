@@ -5,6 +5,8 @@ import parameter
 
 #Setting up pygame
 
+pygame.init()
+
 clock = pygame.time.Clock()
 
 simulationDisplay = pygame.display.set_mode((parameter.displayWidth, parameter.displayHeight))
@@ -50,7 +52,7 @@ functionKeys = {
     pygame.K_MINUS:  (lambda x: x.zoom(0.5)),
     pygame.K_z:      (lambda x: x.reset())}
 
-#Reset function
+#Reset simulation function
 
 def resetSimulation():
     simulationDisplay.fill(constant.black)
@@ -109,6 +111,19 @@ def pause():
         pygame.display.update()
         clock.tick(5)
 
+#Message to screen function
+
+def textObjects(text, font):
+    textSurface = font.render(text, True, constant.white)
+    return textSurface, textSurface.get_rect()
+
+def messageFunction(text):
+    largeText = pygame.font.Font('freesansbold.ttf',115)
+    textSurf, textRect = textObjects(text, largeText)
+    textRect.center = ((parameter.displayWidth/2), (parameter.displayHeight/2))
+    simulationDisplay.blit(textSurf, textRect)
+    pygame.display.update()
+
 #Simulation start screen
 
 def simulationIntro():
@@ -133,6 +148,9 @@ def simulationIntro():
                     functionKeys[event.key](simulationScreen)
         
         simulationDisplay.fill(constant.black)
+
+        messageFunction("THIS WORKS")
+        
         #Draw initial particles
         for particle in simulator.particleList:
 
