@@ -55,7 +55,7 @@ functionKeys = {
 def resetSimulation():
     simulationDisplay.fill(constant.black)
     simulator.particleList = []
-    simulator.generateParticles(parameter.particleNumber,"")
+    simulator.generateParticles(parameter.particleNumber,"moon")
     for particle in simulator.particleList:
         x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
         y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)

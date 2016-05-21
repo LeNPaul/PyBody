@@ -18,7 +18,7 @@ def generateParticles(particleNumber,case):
 
     for n in range(particleNumber):
         if case == "moon":
-            r = random.randrange(0,100)
+            r = random.randrange(0,1000)
             theta = random.uniform(0,6.3)
             px = 600 + int(r*math.sin(theta))
             py = 350 + int(r*math.cos(theta))
