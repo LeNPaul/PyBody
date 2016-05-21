@@ -11,6 +11,32 @@ simulationDisplay = pygame.display.set_mode((parameter.displayWidth, parameter.d
 pygame.display.set_caption("PyBody Simulation")
 pygame.display.update()
 
+#Simulation screen
+
+class SimulationScreen:
+    def __init__ (self, width, height):
+        self.width = width
+        self.height = height
+        (self.dx, self.dy) = (0, 0)
+        (self.mx, self.my) = (0, 0)
+        self.magnification = 1.0
+        
+    def scroll(self, dx=0, dy=0):
+        self.dx += dx * parameter.displayWidth / (self.magnification*10)
+        self.dy += dy * parameter.displayHeight / (self.magnification*10)
+        
+    def zoom(self, zoom):
+        self.magnification *= zoom
+        self.mx = (1-self.magnification) * self.width/2
+        self.my = (1-self.magnification) * self.height/2
+        
+    def reset(self):
+        (self.dx, self.dy) = (0, 0)
+        (self.mx, self.my) = (0, 0)
+        self.magnification = 1.0
+
+simulationScreen = SimulationScreen(parameter.displayWidth,parameter.displayHeight)
+
 #Reset function
 
 def resetSimulation():
@@ -98,7 +124,21 @@ def simulationLoop():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     resetSimulation()
-                if event.key == pygame.K_SPACE:
+
+                elif event.key == pygame.K_LEFT:
+                    simulationScreen.scroll(dx=1)
+                elif event.key == pygame.K_RIGHT:
+                    simulationScreen.scroll(dx=-1)
+                elif event.key == pygame.K_UP:
+                    simulationScreen.scroll(dy=1)
+                elif event.key == pygame.K_DOWN:
+                    simulationScreen.scroll(dy=-1)
+                elif event.key == pygame.K_EQUALS:
+                    simulationScreen.zoom(2)
+                elif event.key == pygame.K_MINUS:
+                    simulationScreen.zoom(0.5)
+             
+                elif event.key == pygame.K_SPACE:
                     pause()
 
         simulationDisplay.fill(constant.black)
@@ -108,10 +148,16 @@ def simulationLoop():
 
         #Draw particles
         for particle in simulator.particleList:
-            x = int(particle.px)
-            y = int(particle.py)
 
-            pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+            x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
+            y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)
+
+            size = int(simulationScreen.magnification)
+
+            if size < 2:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+            else:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
 
         pygame.display.update()
 
