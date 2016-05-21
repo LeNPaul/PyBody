@@ -57,10 +57,18 @@ def resetSimulation():
     simulator.particleList = []
     simulator.generateParticles(parameter.particleNumber,"")
     for particle in simulator.particleList:
-        x = int(particle.px)
-        y = int(particle.py)
-        pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
-        pygame.display.update()
+        x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
+        y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)
+
+        size = int(simulationScreen.magnification)
+
+        if size < 2:
+            pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+        else:
+            pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
+
+    pygame.display.update()
+    clock.tick(15)
     
 #Pause function
 
@@ -79,10 +87,26 @@ def pause():
                     paused = False
                 if event.key == pygame.K_r:
                     resetSimulation()
-                elif event.key == pygame.K_q:
+                if event.key == pygame.K_q:
                     pygame.quit()
                     quit()
+                if event.key in functionKeys:
+                    functionKeys[event.key](simulationScreen)
 
+        simulationDisplay.fill(constant.black)
+        
+        for particle in simulator.particleList:
+            x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
+            y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)
+
+            size = int(simulationScreen.magnification)
+
+            if size < 2:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+            else:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
+
+        pygame.display.update()
         clock.tick(5)
 
 #Simulation start screen
@@ -105,14 +129,22 @@ def simulationIntro():
                 if event.key == pygame.K_q:
                     pygame.quit()
                     quit()
+                if event.key in functionKeys:
+                    functionKeys[event.key](simulationScreen)
         
         simulationDisplay.fill(constant.black)
         #Draw initial particles
         for particle in simulator.particleList:
-            x = int(particle.px)
-            y = int(particle.py)
 
-            pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+            x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
+            y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)
+
+            size = int(simulationScreen.magnification)
+
+            if size < 2:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+            else:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
 
         pygame.display.update()
         clock.tick(15)
