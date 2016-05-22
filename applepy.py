@@ -64,7 +64,6 @@ def daysPassed(count):
 def resetSimulation():
     simulationDisplay.fill(constant.black)
     simulator.particleList = []
-    count = 0
     simulator.generateParticles(parameter.particleNumber,"moon")
     for particle in simulator.particleList:
         x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
@@ -82,7 +81,7 @@ def resetSimulation():
     
 #Pause function
 
-def pause():
+def pause(count):
     paused = True
 
     pygame.display.update()    
@@ -97,6 +96,7 @@ def pause():
                     paused = False
                 if event.key == pygame.K_r:
                     resetSimulation()
+                    count = 0
                 if event.key == pygame.K_q:
                     pygame.quit()
                     quit()
@@ -104,6 +104,7 @@ def pause():
                     functionKeys[event.key](simulationScreen)
 
         simulationDisplay.fill(constant.black)
+        daysPassed(count)
 
         messageFunction("Press space bar to continue simulation")
         
@@ -203,8 +204,9 @@ def simulationLoop():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     resetSimulation()
+                    count = 0
                 elif event.key == pygame.K_SPACE:
-                    pause()
+                    pause(count)
                 elif event.key in functionKeys:
                     functionKeys[event.key](simulationScreen)
 
