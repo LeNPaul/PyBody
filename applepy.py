@@ -135,6 +135,9 @@ def messageFunction(text):
     simulationDisplay.blit(textSurf, textRect)
     pygame.display.update()
 
+#Add button function here
+
+
 #Simulation start screen
 
 def simulationIntro():
