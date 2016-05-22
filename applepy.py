@@ -184,12 +184,12 @@ def simulationIntro():
         mouse = pygame.mouse.get_pos()
 
         if 650 > mouse[0] > 550 and 500 > mouse[1] > 450:
-            pygame.draw.rect(simulationDisplay, constant.green, (parameter.displayWidth/2-50,450,100,50))
+            pygame.draw.rect(simulationDisplay, constant.grey, (parameter.displayWidth/2-50,450,100,50))
         else:
             pygame.draw.rect(simulationDisplay, constant.white, (parameter.displayWidth/2-50,450,100,50))
 
         pygame.display.update()
-        clock.tick(15)
+        clock.tick(5)
 
 #Simulation loop
 
