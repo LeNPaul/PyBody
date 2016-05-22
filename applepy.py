@@ -175,9 +175,18 @@ def simulationIntro():
 
         #Menu
 
-        pygame.draw.rect(simulationDisplay, constant.white, (parameter.displayWidth/2-50,450,100,50))
+        #pygame.draw.rect(simulationDisplay, constant.white, (parameter.displayWidth/2-50,450,100,50))
 
         messageFunction("Press space bar to start simulation")
+
+        #Add button interaction here
+
+        mouse = pygame.mouse.get_pos()
+
+        if 650 > mouse[0] > 550 and 500 > mouse[1] > 450:
+            pygame.draw.rect(simulationDisplay, constant.green, (parameter.displayWidth/2-50,450,100,50))
+        else:
+            pygame.draw.rect(simulationDisplay, constant.white, (parameter.displayWidth/2-50,450,100,50))
 
         pygame.display.update()
         clock.tick(15)
