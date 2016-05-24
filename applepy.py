@@ -52,21 +52,6 @@ functionKeys = {
     pygame.K_MINUS:  (lambda x: x.zoom(0.5)),
     pygame.K_z:      (lambda x: x.reset())}
 
-#Button function
-
-def button(msg,x,y,w,h,ic,ac):
-    mouse = pygame.mouse.get_pos()
-
-    if x+w > mouse[0] > x and y+h > mouse[1] > y:
-        pygame.draw.rect(gameDisplay, ac,(x,y,w,h))
-    else:
-        pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
-
-    smallText = pygame.font.Font("freesansbold.ttf",20)
-    textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ( (x+(w/2)), (y+(h/2)) )
-    gameDisplay.blit(textSurf, textRect)
-
 #Diplay number of days passed
 
 def daysPassed(count):
@@ -152,6 +137,21 @@ def messageFunction(text):
 
 #Add button function here
 
+#Button function
+
+def button(msg,x,y,w,h,ic,ac):
+    
+    mouse = pygame.mouse.get_pos()
+
+    if x+w > mouse[0] > x and y+h > mouse[1] > y:
+        pygame.draw.rect(simulationDisplay, ac,(x-(w/2),y-(h/2),w,h))
+    else:
+        pygame.draw.rect(simulationDisplay, ic,(x-(w/2),y-(h/2),w,h))
+
+    smallText = pygame.font.Font("freesansbold.ttf",20)
+    textSurf, textRect = textObjects(msg, smallText)
+    textRect.center = ( (x), (y))
+    simulationDisplay.blit(textSurf, textRect)
 
 #Simulation start screen
 
@@ -199,12 +199,7 @@ def simulationIntro():
 
         #Add button interaction here
 
-        mouse = pygame.mouse.get_pos()
-
-        if 650 > mouse[0] > 550 and 500 > mouse[1] > 450:
-            pygame.draw.rect(simulationDisplay, constant.grey, (parameter.displayWidth/2-50,450,100,50))
-        else:
-            pygame.draw.rect(simulationDisplay, constant.white, (parameter.displayWidth/2-50,450,100,50))
+        button("Start!", parameter.displayWidth/2,450,100,50, constant.green,constant.darkGreen)
 
         pygame.display.update()
         clock.tick(5)
