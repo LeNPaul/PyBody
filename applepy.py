@@ -110,7 +110,7 @@ def pause(count):
         simulationDisplay.fill(constant.black)
         daysPassed(count)
 
-        messageFunction("Press space bar to continue simulation")
+        messageFunction("Press space bar to continue simulation",parameter.displayWidth/2,parameter.displayHeight/2)
         
         for particle in simulator.particleList:
             x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
@@ -132,10 +132,10 @@ def textObjects(text, font):
     textSurface = font.render(text, True, constant.white)
     return textSurface, textSurface.get_rect()
 
-def messageFunction(text):
+def messageFunction(text,x,y):
     largeText = pygame.font.Font('freesansbold.ttf',30)
     textSurf, textRect = textObjects(text, largeText)
-    textRect.center = ((parameter.displayWidth/2), (parameter.displayHeight/2))
+    textRect.center = ((x), (y))
     simulationDisplay.blit(textSurf, textRect)
     pygame.display.update()
 
@@ -200,11 +200,9 @@ def simulationIntro():
 
         #Menu
 
-        messageFunction("Press space bar to start simulation")
+        messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
 
-        #Add button interaction here
-
-        button("Start!", parameter.displayWidth/2,450,100,50, constant.green,constant.darkGreen,simulationLoop)
+        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
 
         pygame.display.update()
         clock.tick(5)
