@@ -10,7 +10,11 @@ pygame.init()
 clock = pygame.time.Clock()
 
 simulationDisplay = pygame.display.set_mode((parameter.displayWidth, parameter.displayHeight))
-pygame.display.set_caption("PyBody Simulation")
+pygame.display.set_caption("ApplePy Simulation")
+
+icon = pygame.image.load('planet.png')
+pygame.display.set_icon(icon)
+
 pygame.display.update()
 
 #Simulation screen
