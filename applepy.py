@@ -26,16 +26,16 @@ class SimulationScreen:
         (self.dx, self.dy) = (0, 0)
         (self.mx, self.my) = (0, 0)
         self.magnification = 1.0
-        
+
     def scroll(self, dx=0, dy=0):
         self.dx += dx * parameter.displayWidth / (self.magnification*10)
         self.dy += dy * parameter.displayHeight / (self.magnification*10)
-        
+
     def zoom(self, zoom):
         self.magnification *= zoom
         self.mx = (1-self.magnification) * self.width/2
         self.my = (1-self.magnification) * self.height/2
-        
+
     def reset(self):
         (self.dx, self.dy) = (0, 0)
         (self.mx, self.my) = (0, 0)
@@ -82,13 +82,13 @@ def resetSimulation():
 
     pygame.display.update()
     clock.tick(15)
-    
+
 #Pause function
 
 def pause(count):
     paused = True
 
-    pygame.display.update()    
+    pygame.display.update()
 
     while paused:
         for event in pygame.event.get():
@@ -111,7 +111,7 @@ def pause(count):
         daysPassed(count)
 
         messageFunction("Press space bar to continue simulation",parameter.displayWidth/2,parameter.displayHeight/2)
-        
+
         for particle in simulator.particleList:
             x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
             y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)
@@ -144,7 +144,7 @@ def messageFunction(text,x,y):
 #Button function
 
 def button(msg,x,y,w,h,ic,ac,action=None):
-    
+
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -182,9 +182,9 @@ def simulationIntro():
                     quit()
                 if event.key in functionKeys:
                     functionKeys[event.key](simulationScreen)
-        
+
         simulationDisplay.fill(constant.black)
-        
+
         #Draw initial particles
         for particle in simulator.particleList:
 
@@ -201,6 +201,7 @@ def simulationIntro():
         #Menu
 
         messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
+        messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)        
 
         button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
 
