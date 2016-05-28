@@ -13,7 +13,7 @@ def eulerIntegrator(self,other):
 
     dx = (other.px - self.px)
     dy = (other.py - self.py)
-    
+
     distance = math.sqrt(dx**2 + dy**2)
 
     f = gravity(self.mass,other.mass,distance)
@@ -34,12 +34,9 @@ def leapFrogIntegrator(self,other):
     #Returns the position and velocity of self object
     #Uses Leap Frog numerical integration
 
-    self.px += self.px + self.vx * parameter.dt
-    self.py += self.px + self.vy * parameter.dt
-
     dx = (other.px - self.px)
     dy = (other.py - self.py)
-    
+
     distance = math.sqrt(dx**2 + dy**2)
 
     f = gravity(self.mass,other.mass,distance)
@@ -48,5 +45,22 @@ def leapFrogIntegrator(self,other):
     fx = math.cos(theta) * f
     fy = math.sin(theta) * f
 
-    self.vx += self.vx + fx/self.mass * parameter.dt
-    self.vy += self.vy + fy/self.mass * parameter.dt
+    self.vx += self.vx + (parameter.dt/2) * fx/self.mass
+    self.vy += self.vy + (parameter.dt/2) * fy/self.mass
+
+    self.px += self.px + parameter.dt * self.vx
+    self.py += self.py + parameter.dt * self.vy
+
+    dx = (other.px - self.px)
+    dy = (other.py - self.py)
+
+    distance = math.sqrt(dx**2 + dy**2)
+
+    f = gravity(self.mass,other.mass,distance)
+
+    theta = math.atan2(dy,dx)
+    fx = math.cos(theta) * f
+    fy = math.sin(theta) * f
+
+    self.vx += self.vx + (parameter.dt/2) * fx/self.mass
+    self.vy += self.vy + (parameter.dt/2) * fy/self.mass

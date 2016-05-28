@@ -201,7 +201,7 @@ def simulationIntro():
         #Menu
 
         messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
-        messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)        
+        messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
 
         button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
 
@@ -239,7 +239,7 @@ def simulationLoop():
         simulationDisplay.fill(constant.black)
 
         #Update particle positions
-        simulator.updatePositions(simulator.particleList,"")
+        simulator.updatePositions(simulator.particleList,"leapFrog")
 
         #Draw particles
         for particle in simulator.particleList:
