@@ -143,20 +143,20 @@ def messageFunction(text,x,y):
 
 #Button function
 
-def button(msg,x,y,w,h,ic,ac,action=None):
+def button(text,x,y,buttonWidth,buttonHeight,inactiveColor,activeColor,action=None):
 
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
-    if x+w > mouse[0] > x and y+h > mouse[1] > y:
-        pygame.draw.rect(simulationDisplay, ac,(x-(w/2),y-(h/2),w,h))
+    if x + buttonWidth/2 > mouse[0] > x - buttonWidth/2 and y + buttonHeight/2 > mouse[1] > y - buttonHeight/2:
+        pygame.draw.rect(simulationDisplay, activeColor,(x-(buttonWidth/2),y-(buttonHeight/2),buttonWidth,buttonHeight))
         if click[0] == 1 and action != None:
             action()
     else:
-        pygame.draw.rect(simulationDisplay, ic,(x-(w/2),y-(h/2),w,h))
+        pygame.draw.rect(simulationDisplay, inactiveColor,(x-(buttonWidth/2),y-(buttonHeight/2),buttonWidth,buttonHeight))
 
     smallText = pygame.font.Font("freesansbold.ttf",20)
-    textSurf, textRect = textObjects(msg, smallText)
+    textSurf, textRect = textObjects(text, smallText)
     textRect.center = ( (x), (y))
     simulationDisplay.blit(textSurf, textRect)
 
@@ -200,13 +200,14 @@ def simulationIntro():
 
         #Menu
 
-        messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
-        messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
+        #messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
 
-        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
+        #messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
+
+        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.white,simulationLoop)
 
         pygame.display.update()
-        clock.tick(5)
+        clock.tick(30)
 
 #Simulation loop
 
@@ -239,7 +240,7 @@ def simulationLoop():
         simulationDisplay.fill(constant.black)
 
         #Update particle positions
-        simulator.updatePositions(simulator.particleList,"leapFrog")
+        simulator.updatePositions(simulator.particleList,"euler")
 
         #Draw particles
         for particle in simulator.particleList:
