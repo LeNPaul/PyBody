@@ -137,7 +137,7 @@ def messageFunction(text,x,y):
     textSurf, textRect = textObjects(text, largeText)
     textRect.center = ((x), (y))
     simulationDisplay.blit(textSurf, textRect)
-    pygame.display.update()
+    #pygame.display.update()
 
 #Add button function here
 
@@ -200,11 +200,11 @@ def simulationIntro():
 
         #Menu
 
-        #messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
+        messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
 
-        #messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
+        messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
 
-        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.white,simulationLoop)
+        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
 
         pygame.display.update()
         clock.tick(30)
