@@ -2,6 +2,7 @@ import pygame
 import simulator
 import constant
 import parameter
+import Tkinter
 
 #Setting up pygame
 
@@ -267,5 +268,15 @@ def simulationLoop():
 
 #Calling simulation program functions
 
-simulationIntro()
-simulationLoop()
+#simulationIntro()
+#simulationLoop()
+
+#Initial start screen
+top = Tkinter.Tk()
+def hello():
+   simulationLoop()
+
+B1 = Tkinter.Button(top, text = "Start simulation", command = hello)
+B1.pack()
+
+top.mainloop()
