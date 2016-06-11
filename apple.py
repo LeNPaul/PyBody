@@ -139,8 +139,6 @@ def messageFunction(text,x,y):
     simulationDisplay.blit(textSurf, textRect)
     #pygame.display.update()
 
-#Add button function here
-
 #Button function
 
 def button(text,x,y,buttonWidth,buttonHeight,inactiveColor,activeColor,action=None):
@@ -198,13 +196,17 @@ def simulationIntro():
             else:
                 pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
 
-        #Menu
+        #Start menu
 
         messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
 
         messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
 
-        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
+        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2 - 150,100,50, constant.green,constant.darkGreen,simulationLoop)
+
+        button("Help", parameter.displayWidth/2,parameter.displayHeight/2 - 75,100,50, constant.green,constant.darkGreen,helpScreen)
+
+        button("About", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
 
         pygame.display.update()
         clock.tick(30)
@@ -264,6 +266,27 @@ def simulationLoop():
 
     pygame.quit()
     quit()
+
+#Simulation help screen
+def helpScreen():
+
+    info = True
+
+    while info:
+
+        simulationDisplay.fill(constant.black)
+
+        messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
+
+        messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
+
+        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2 - 150,100,50, constant.green,constant.darkGreen,simulationLoop)
+
+        button("Help", parameter.displayWidth/2,parameter.displayHeight/2 - 75,100,50, constant.green,constant.darkGreen,simulationLoop)
+
+        button("About", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
+
+        pygame.display.update()
 
 #Calling simulation program functions
 
