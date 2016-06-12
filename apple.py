@@ -206,7 +206,7 @@ def simulationIntro():
 
         button("Help", parameter.displayWidth/2,parameter.displayHeight/2 - 75,100,50, constant.green,constant.darkGreen,helpScreen)
 
-        button("About", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
+        button("About", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,aboutScreen)
 
         pygame.display.update()
         clock.tick(30)
@@ -270,23 +270,111 @@ def simulationLoop():
 #Simulation help screen
 def helpScreen():
 
-    info = True
+    intro = True
 
-    while info:
+    while intro:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    intro = False
+                if event.key == pygame.K_r:
+                    resetSimulation()
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+                if event.key in functionKeys:
+                    functionKeys[event.key](simulationScreen)
 
         simulationDisplay.fill(constant.black)
+
+        #Draw initial particles
+        for particle in simulator.particleList:
+
+            x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
+            y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)
+
+            size = int(simulationScreen.magnification)
+
+            if size < 2:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+            else:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
+
+        #Start menu
 
         messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
 
         messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
 
-        button("Start!", parameter.displayWidth/2,parameter.displayHeight/2 - 150,100,50, constant.green,constant.darkGreen,simulationLoop)
+        messageFunction("Press spacebar to pause",parameter.displayWidth/2,parameter.displayHeight/8 + 150)
 
-        button("Help", parameter.displayWidth/2,parameter.displayHeight/2 - 75,100,50, constant.green,constant.darkGreen,simulationLoop)
+        messageFunction("Use arrow keys to move around and +/- to zoom",parameter.displayWidth/2,parameter.displayHeight/8 + 200)
 
-        button("About", parameter.displayWidth/2,parameter.displayHeight/2,100,50, constant.green,constant.darkGreen,simulationLoop)
+        messageFunction("Press r to reset simulation",parameter.displayWidth/2,parameter.displayHeight/8 + 250)
+
+        button("Back", parameter.displayWidth/2,parameter.displayHeight/8 + 350,100,50, constant.green,constant.darkGreen,simulationIntro)
 
         pygame.display.update()
+        clock.tick(30)
+
+#Simulation about screen
+def aboutScreen():
+
+    intro = True
+
+    while intro:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    intro = False
+                if event.key == pygame.K_r:
+                    resetSimulation()
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+                if event.key in functionKeys:
+                    functionKeys[event.key](simulationScreen)
+
+        simulationDisplay.fill(constant.black)
+
+        #Draw initial particles
+        for particle in simulator.particleList:
+
+            x = int(simulationScreen.mx + (simulationScreen.dx + particle.px) * simulationScreen.magnification)
+            y = int(simulationScreen.my + (simulationScreen.dy + particle.py) * simulationScreen.magnification)
+
+            size = int(simulationScreen.magnification)
+
+            if size < 2:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),1,1)
+            else:
+                pygame.draw.circle(simulationDisplay,constant.white,(x,y),size,0)
+
+        #Start menu
+
+        messageFunction("ApplePy",parameter.displayWidth/2,parameter.displayHeight/8)
+
+        messageFunction("n-body simulator",parameter.displayWidth/2,parameter.displayHeight/8 + 50)
+
+        messageFunction("This physics simulation uses euler integration to solve",parameter.displayWidth/2,parameter.displayHeight/8 + 150)
+
+        messageFunction("for the motion of particles under the influence of gravity.",parameter.displayWidth/2,parameter.displayHeight/8 + 200)
+
+        messageFunction("Built by Paul Le",parameter.displayWidth/2,parameter.displayHeight/8 + 250)
+
+        button("Back", parameter.displayWidth/2,parameter.displayHeight/8 + 350,100,50, constant.green,constant.darkGreen,simulationIntro)
+
+        pygame.display.update()
+        clock.tick(30)
+
 
 #Calling simulation program functions
 
