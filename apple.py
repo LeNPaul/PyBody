@@ -314,7 +314,7 @@ def helpScreen():
 
         messageFunction("Use arrow keys to move around and +/- to zoom",parameter.displayWidth/2,parameter.displayHeight/8 + 200)
 
-        messageFunction("Press r to reset simulation",parameter.displayWidth/2,parameter.displayHeight/8 + 250)
+        messageFunction("Press r to reset simulation and q to quit",parameter.displayWidth/2,parameter.displayHeight/8 + 250)
 
         button("Back", parameter.displayWidth/2,parameter.displayHeight/8 + 350,100,50, constant.green,constant.darkGreen,simulationIntro)
 
