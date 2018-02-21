@@ -6,7 +6,7 @@ A basic n-body simulation program that aims to simulate many of the processes th
 
 This project is currently in the early development stages. I intend to eventually make this into a fully featured physics engine for running physics simulations.
 
-So far, this program is able to do basic n-body simulations, using the Euler method of solving for the equations of motion. 
+So far, this program is able to do basic n-body simulations, using the Euler method of solving for the equations of motion.
 
 ### Current Progress
 
