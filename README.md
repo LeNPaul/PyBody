@@ -10,4 +10,4 @@ So far, this program is able to do basic n-body simulations, using the Euler met
 
 ### Current Progress
 
-There are plans to do a complete rebuild of this project, from the ground up.
+There are plans to do a complete rebuild of this project, from the ground up. Django will be the web framework used on the backend.
